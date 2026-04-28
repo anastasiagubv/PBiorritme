@@ -6,7 +6,8 @@ class Biorritme {
   
 
     public function __construct($naixement, $nom) {
-        //
+        $this->naixement = new DateTime($naixement);
+        $this->nom = $nom; 
     }
 
     public function getNom() {
@@ -14,6 +15,7 @@ class Biorritme {
     }
 
     public function calculBiorritme() {
+        
        //Calcula els biorritmes en funció de la data
        //actual i la data de naixement
        //Heu de tenir en compte els periodes a arrPeriodes
