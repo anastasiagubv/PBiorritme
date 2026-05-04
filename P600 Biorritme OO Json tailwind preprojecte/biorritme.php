@@ -15,10 +15,31 @@ class Biorritme {
     }
 
     public function calculBiorritme() {
+    $avui = new DateTime();
+    
+    // dies desde el naixement
+    $interval = $this->naixement->diff($avui);
+    $dies = $interval->days;
+
+    $results = array();
+    
+    foreach ($this->arrPeriodes as $nom => $periode) {
+        // Cicles completats
+        $cicles = $dies / $periode;
         
-       //Calcula els biorritmes en funció de la data
-       //actual i la data de naixement
-       //Heu de tenir en compte els periodes a arrPeriodes
+        // Convertir a radians
+        $radians = $cicles * 2 * M_PI;
+        
+        // Sinus (valor entre -1 i 1)
+        $valor = sin($radians);
+        
+        // Convertir a percentatge (0-100)
+        $percentatge = (($valor + 1) / 2) * 100;
+        
+        $results[$nom] = round($percentatge, 2);
+    }
+    
+    return $results;
     }
 
     public function saveCalculBiorritmeToJson($values) {
