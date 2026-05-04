@@ -1,6 +1,21 @@
 <?php
 include 'biorritme.php';
 
+// Recopilació de dades del formulari
+$nomusuari = $_POST['nomusuari'] ?? '';
+$datanaixement = $_POST['datanaixement'] ?? '';
+
+// Crear l'objecte
+$biorritme = new Biorritme($datanaixement, $nomusuari);
+
+// Calcular
+$resultat = $biorritme->calculBiorritme();
+
+// Guardar a JSON
+$biorritme->saveCalculBiorritmeToJson($resultat);
+
+// Obtenir la taula
+$taula = $biorritme->tableCalculBiorritmeJsonFile();
 
 $today = new DateTime();
 
